@@ -1,0 +1,19 @@
+import numpy as np
+
+P = np.array([[12,4],
+              [4,19]])
+
+C = np.array([[18,6],
+              [2,5]])
+
+det = int(round(np.linalg.det(P)))
+
+print("Determinant =", det)
+
+print("\nPlaintext Matrix")
+print(P)
+
+print("\nCiphertext Matrix")
+print(C)
+
+print("\nKnown Plaintext Attack Demonstration Completed")
