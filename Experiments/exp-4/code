@@ -1,0 +1,52 @@
+def encrypt(plaintext, key):
+    ciphertext = ""
+    key = key.upper()
+    key_index = 0
+
+    for ch in plaintext:
+        if ch.isalpha():
+            shift = ord(key[key_index % len(key)]) - ord('A')
+
+            if ch.isupper():
+                c = chr((ord(ch) - ord('A') + shift) % 26 + ord('A'))
+            else:
+                c = chr((ord(ch) - ord('a') + shift) % 26 + ord('a'))
+
+            ciphertext += c
+            key_index += 1
+        else:
+            ciphertext += ch
+
+    return ciphertext
+
+
+def decrypt(ciphertext, key):
+    plaintext = ""
+    key = key.upper()
+    key_index = 0
+
+    for ch in ciphertext:
+        if ch.isalpha():
+            shift = ord(key[key_index % len(key)]) - ord('A')
+
+            if ch.isupper():
+                p = chr((ord(ch) - ord('A') - shift) % 26 + ord('A'))
+            else:
+                p = chr((ord(ch) - ord('a') - shift) % 26 + ord('a'))
+
+            plaintext += p
+            key_index += 1
+        else:
+            plaintext += ch
+
+    return plaintext
+
+
+plaintext = input("Enter Plaintext: ")
+key = input("Enter Key: ")
+
+cipher = encrypt(plaintext, key)
+print("Encrypted Text:", cipher)
+
+plain = decrypt(cipher, key)
+print("Decrypted Text:", plain)
