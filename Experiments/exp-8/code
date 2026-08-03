@@ -1,0 +1,53 @@
+import string
+
+keyword = "CIPHER"
+
+alphabet = string.ascii_uppercase
+
+cipher = ""
+
+for ch in keyword:
+    if ch not in cipher:
+        cipher += ch
+
+for ch in alphabet:
+    if ch not in cipher:
+        cipher += ch
+
+print("Plain Alphabet : ", alphabet)
+print("Cipher Alphabet:", cipher)
+
+
+def encrypt(text):
+    result = ""
+
+    for ch in text.upper():
+        if ch.isalpha():
+            index = alphabet.index(ch)
+            result += cipher[index]
+        else:
+            result += ch
+
+    return result
+
+
+def decrypt(text):
+    result = ""
+
+    for ch in text.upper():
+        if ch.isalpha():
+            index = cipher.index(ch)
+            result += alphabet[index]
+        else:
+            result += ch
+
+    return result
+
+
+plain = input("\nEnter Plaintext: ")
+
+enc = encrypt(plain)
+print("Encrypted:", enc)
+
+dec = decrypt(enc)
+print("Decrypted:", dec)
