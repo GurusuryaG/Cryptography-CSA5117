@@ -1,0 +1,88 @@
+matrix = [
+['M','F','H','I','K'],
+['U','N','O','P','Q'],
+['Z','V','W','X','Y'],
+['E','L','A','R','G'],
+['D','S','T','B','C']
+]
+
+
+def locate(ch):
+
+    if ch == 'J':
+        ch = 'I'
+
+    for i in range(5):
+        for j in range(5):
+            if matrix[i][j] == ch:
+                return i,j
+
+
+def prepare(text):
+
+    text = text.upper().replace("J","I")
+
+    letters = []
+
+    for ch in text:
+        if ch.isalpha():
+            letters.append(ch)
+
+    result = []
+
+    i = 0
+
+    while i < len(letters):
+
+        a = letters[i]
+
+        if i+1 == len(letters):
+            b='X'
+            i+=1
+
+        else:
+
+            b=letters[i+1]
+
+            if a==b:
+                b='X'
+                i+=1
+            else:
+                i+=2
+
+        result.append(a+b)
+
+    return result
+
+
+def encrypt_pair(pair):
+
+    a,b=pair
+
+    r1,c1=locate(a)
+    r2,c2=locate(b)
+
+    if r1==r2:
+
+        return matrix[r1][(c1+1)%5]+matrix[r2][(c2+1)%5]
+
+    elif c1==c2:
+
+        return matrix[(r1+1)%5][c1]+matrix[(r2+1)%5][c2]
+
+    else:
+
+        return matrix[r1][c2]+matrix[r2][c1]
+
+
+plaintext="Must see you over Cadogan West Coming at once"
+
+pairs=prepare(plaintext)
+
+cipher=""
+
+for p in pairs:
+    cipher+=encrypt_pair(p)
+
+print("Pairs:",pairs)
+print("Ciphertext:",cipher)
