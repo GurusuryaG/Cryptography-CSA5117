@@ -1,0 +1,43 @@
+def mod_inverse(a, m):
+    for i in range(m):
+        if (a * i) % m == 1:
+            return i
+    return None
+def encrypt(text, a, b):
+    result = ""
+
+    for ch in text.upper():
+        if ch.isalpha():
+            p = ord(ch) - ord('A')
+            c = (a * p + b) % 26
+            result += chr(c + ord('A'))
+        else:
+            result += ch
+
+    return result
+def decrypt(cipher, a, b):
+    result = ""
+
+    a_inv = mod_inverse(a, 26)
+
+    if a_inv is None:
+        return "Invalid value of a"
+
+    for ch in cipher.upper():
+        if ch.isalpha():
+            c = ord(ch) - ord('A')
+            p = (a_inv * (c - b)) % 26
+            result += chr(p + ord('A'))
+        else:
+            result += ch
+
+    return result
+a = int(input("Enter value of a: "))
+b = int(input("Enter value of b: "))
+text = input("Enter Plaintext: ")
+
+cipher = encrypt(text, a, b)
+print("Encrypted:", cipher)
+
+plain = decrypt(cipher, a, b)
+print("Decrypted:", plain)
