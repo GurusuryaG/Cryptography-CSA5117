@@ -1,0 +1,14 @@
+import math
+
+keys = math.factorial(25)
+
+print("Total Possible Keys =", keys)
+
+power = math.log2(keys)
+
+print("Approximate Power of 2 = 2^%.2f" % power)
+
+effective = keys // 2
+
+print("Effectively Unique Keys =", effective)
+print("Approximate = 2^%.2f" % math.log2(effective))
