@@ -1,0 +1,20 @@
+message = input("Enter message: ")
+
+block_size = 8
+
+data = message.encode()
+
+padding = block_size - (len(data) % block_size)
+
+if padding == 0:
+    padding = block_size
+
+data += b'\x80' + b'\x00' * (padding - 1)
+
+print("Original length:", len(message))
+print("Padded data:", data)
+print("Padding bytes:", padding)
+
+print("\nMotivation:")
+print("Always padding allows the receiver to distinguish")
+print("between real data and padding.")
