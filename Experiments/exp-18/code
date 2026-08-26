@@ -1,0 +1,21 @@
+key = input("Enter 16-hex-digit DES key: ")
+
+key56 = bin(int(key, 16))[2:].zfill(64)
+
+# Remove parity bits
+key56 = ''.join(key56[i] for i in range(64) if (i + 1) % 8 != 0)
+
+C = key56[:28]
+D = key56[28:]
+
+shifts = [1, 1, 2, 2, 2, 2, 2, 2,
+          1, 2, 2, 2, 2, 2, 2, 1]
+
+print("DES Subkeys:")
+
+for i, shift in enumerate(shifts):
+    C = C[shift:] + C[:shift]
+    D = D[shift:] + D[:shift]
+
+    subkey = C + D
+    print("K" + str(i + 1), "=", subkey[:48])
