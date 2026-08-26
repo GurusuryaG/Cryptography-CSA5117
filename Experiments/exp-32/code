@@ -1,0 +1,22 @@
+import hashlib
+import random
+
+message = input("Enter message: ")
+
+hash_value = hashlib.sha256(message.encode()).hexdigest()
+
+k1 = random.randint(1, 100)
+k2 = random.randint(1, 100)
+
+print("Message hash:", hash_value)
+
+print("\nDSA:")
+print("First signature uses k =", k1)
+print("Second signature uses k =", k2)
+
+if k1 != k2:
+    print("DSA signatures are different.")
+
+print("\nRSA:")
+print("Traditional deterministic RSA signatures produce the same signature")
+print("for the same message and private key.")
