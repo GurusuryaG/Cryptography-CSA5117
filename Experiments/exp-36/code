@@ -1,0 +1,21 @@
+import math
+
+a = int(input("Enter a: "))
+b = int(input("Enter b: "))
+plaintext = input("Enter plaintext: ").upper()
+
+if math.gcd(a, 26) != 1:
+    print("Invalid a!")
+    print("a must be relatively prime to 26.")
+else:
+    ciphertext = ""
+
+    for ch in plaintext:
+        if ch.isalpha():
+            p = ord(ch) - 65
+            c = (a * p + b) % 26
+            ciphertext += chr(c + 65)
+        else:
+            ciphertext += ch
+
+    print("Ciphertext:", ciphertext)
