@@ -1,0 +1,29 @@
+def xor_bytes(a, b):
+    return bytes(x ^ y for x, y in zip(a, b))
+
+
+# Simple XOR-based block encryption for demonstration
+def encrypt_block(block, key):
+    return xor_bytes(block, key)
+
+
+plaintext = input("Enter plaintext (8 characters): ").encode()
+key = input("Enter 8-character key: ").encode()
+iv = input("Enter 8-character IV: ").encode()
+
+# Make sure the data is 8 bytes
+plaintext = plaintext[:8].ljust(8, b' ')
+key = key[:8].ljust(8, b' ')
+iv = iv[:8].ljust(8, b' ')
+
+# CBC: C1 = E(P1 XOR IV)
+xored = xor_bytes(plaintext, iv)
+ciphertext = encrypt_block(xored, key)
+
+print("\nPlaintext :", plaintext.decode())
+print("Key       :", key.decode())
+print("IV        :", iv.decode())
+print("Ciphertext:", ciphertext.hex())
+
+print("\nSecurity   : 3DES is more secure than DES")
+print("Performance: DES is faster than 3DES")
