@@ -1,0 +1,21 @@
+print("RSA Private Key Leakage")
+
+name = input("Enter user's name: ")
+old_private_key = input("Enter leaked private key: ")
+new_public_key = input("Enter new public key: ")
+new_private_key = input("Enter new private key: ")
+
+print("\nUser:", name)
+print("Old private key:", old_private_key)
+print("New public key:", new_public_key)
+print("New private key:", new_private_key)
+
+print("\nIs it safe to generate only new public and private keys?")
+print("No.")
+
+print("\nReason:")
+print("The old modulus n is still being used.")
+print("An attacker who knows the old private key may still compromise the system.")
+
+print("\nRecommended solution:")
+print("Generate a completely new RSA key pair with a new modulus n.")
