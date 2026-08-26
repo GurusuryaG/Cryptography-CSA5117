@@ -1,0 +1,34 @@
+import random
+
+plaintext = input("Enter plaintext: ").upper()
+
+key = []
+
+for i in range(len(plaintext)):
+    key.append(random.randint(0, 25))
+
+ciphertext = ""
+
+for i, ch in enumerate(plaintext):
+    if ch.isalpha():
+        p = ord(ch) - 65
+        c = (p + key[i]) % 26
+        ciphertext += chr(c + 65)
+    else:
+        ciphertext += ch
+
+print("Random key:", key)
+print("Ciphertext:", ciphertext)
+
+# Decryption
+decrypted = ""
+
+for i, ch in enumerate(ciphertext):
+    if ch.isalpha():
+        c = ord(ch) - 65
+        p = (c - key[i]) % 26
+        decrypted += chr(p + 65)
+    else:
+        decrypted += ch
+
+print("Decrypted:", decrypted)
