@@ -1,0 +1,35 @@
+import numpy as np
+
+print("Hill Cipher Known Plaintext Attack")
+
+p1 = input("Enter plaintext pair 1 (2 numbers): ").split()
+c1 = input("Enter ciphertext pair 1 (2 numbers): ").split()
+
+p2 = input("Enter plaintext pair 2 (2 numbers): ").split()
+c2 = input("Enter ciphertext pair 2 (2 numbers): ").split()
+
+P = np.array([
+    [int(p1[0]), int(p2[0])],
+    [int(p1[1]), int(p2[1])]
+])
+
+C = np.array([
+    [int(c1[0]), int(c2[0])],
+    [int(c1[1]), int(c2[1])]
+])
+
+det = int(round(np.linalg.det(P)))
+
+inv_det = pow(det % 26, -1, 26)
+
+P_inv = np.array([
+    [P[1][1], -P[0][1]],
+    [-P[1][0], P[0][0]]
+])
+
+P_inv = (inv_det * P_inv) % 26
+
+K = (C @ P_inv) % 26
+
+print("\nRecovered key matrix:")
+print(K)
