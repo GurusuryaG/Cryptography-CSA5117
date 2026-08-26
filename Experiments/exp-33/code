@@ -1,0 +1,34 @@
+# DES Encryption and Decryption - Simple Demonstration
+
+def xor_bits(a, b):
+    result = ""
+    for i in range(len(a)):
+        result += str(int(a[i]) ^ int(b[i]))
+    return result
+
+
+print("DES ENCRYPTION AND DECRYPTION")
+print("-----------------------------")
+
+plaintext = input("Enter 8-bit plaintext: ")
+key = input("Enter 8-bit key: ")
+
+# Check input
+if len(plaintext) != 8 or len(key) != 8:
+    print("Please enter exactly 8 bits.")
+else:
+    print("\nPlaintext :", plaintext)
+    print("Key       :", key)
+
+    # Simple DES-style XOR encryption demonstration
+    ciphertext = xor_bits(plaintext, key)
+
+    print("Ciphertext:", ciphertext)
+
+    # Decryption using the same key
+    decrypted = xor_bits(ciphertext, key)
+
+    print("Decrypted :", decrypted)
+
+    if decrypted == plaintext:
+        print("\nDecryption successful!")
