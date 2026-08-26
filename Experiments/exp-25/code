@@ -1,0 +1,14 @@
+import math
+
+n = int(input("Enter n: "))
+e = int(input("Enter e: "))
+m = int(input("Enter suspected plaintext: "))
+
+g = math.gcd(m, n)
+
+if g > 1:
+    print("Common factor found:", g)
+    print("RSA can be broken because n can be factored.")
+    print("Other factor:", n // g)
+else:
+    print("No common factor found.")
