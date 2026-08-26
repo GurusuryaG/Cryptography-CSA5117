@@ -1,0 +1,19 @@
+n = int(input("Enter RSA modulus n: "))
+e = int(input("Enter public exponent e: "))
+message = input("Enter message: ").upper()
+
+cipher = []
+
+for ch in message:
+    if ch.isalpha():
+        m = ord(ch) - ord('A')
+        c = pow(m, e, n)
+        cipher.append(c)
+
+print("Ciphertext:", cipher)
+
+print("\nIs this secure?")
+print("No.")
+
+print("Attack: frequency/codebook attack.")
+print("Only 26 possible plaintext values are used.")
