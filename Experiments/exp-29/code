@@ -1,0 +1,20 @@
+block_size = 1024
+
+rate = 576
+capacity = block_size - rate
+
+lane_size = 64
+
+capacity_lanes = capacity // lane_size
+
+print("Block size:", block_size, "bits")
+print("Rate:", rate, "bits")
+print("Capacity:", capacity, "bits")
+print("Capacity lanes:", capacity_lanes)
+
+print("\nInitial capacity lanes contain all zeros.")
+
+print("Permutation is ignored as instructed.")
+print("Therefore, capacity lanes never receive message bits.")
+
+print("\nTime required for all capacity lanes to become nonzero: NEVER")
