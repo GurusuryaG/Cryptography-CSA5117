@@ -1,0 +1,19 @@
+def xor(a, b):
+    return ''.join(str(int(x) ^ int(y)) for x, y in zip(a, b))
+
+iv = input("Enter IV (8 bits): ")
+key = input("Enter key: ")
+plaintext = input("Enter plaintext (16 bits): ")
+
+p1 = plaintext[:8]
+p2 = plaintext[8:16]
+
+c1 = xor(p1, iv)
+c2 = xor(p2, c1)
+
+print("Ciphertext:", c1 + c2)
+
+d1 = xor(c1, iv)
+d2 = xor(c2, c1)
+
+print("Decrypted:", d1 + d2)
