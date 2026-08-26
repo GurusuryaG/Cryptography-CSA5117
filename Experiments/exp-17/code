@@ -1,0 +1,42 @@
+# DES Decryption - Reverse Order of 16 Subkeys
+
+# DES decryption uses:
+# K16, K15, K14, ..., K2, K1
+
+def generate_keys(key):
+    keys = []
+
+    # Simple demonstration of 16 subkeys
+    for i in range(16):
+        subkey = key[i % len(key):] + key[:i % len(key)]
+        keys.append(subkey)
+
+    return keys
+
+
+def decrypt(ciphertext, keys):
+    print("\nDecryption process:")
+
+    # Use keys in reverse order
+    for i in range(15, -1, -1):
+        print("Using K" + str(i + 1) + ":", keys[i])
+
+    # Demonstration result
+    plaintext = ciphertext[::-1]
+
+    return plaintext
+
+
+key = input("Enter key: ")
+ciphertext = input("Enter ciphertext: ")
+
+keys = generate_keys(key)
+
+print("\nGenerated 16 Subkeys:")
+for i in range(16):
+    print("K" + str(i + 1) + " =", keys[i])
+
+plaintext = decrypt(ciphertext, keys)
+
+print("\nCiphertext:", ciphertext)
+print("Decrypted text:", plaintext)
