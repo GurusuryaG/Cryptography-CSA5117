@@ -1,0 +1,25 @@
+print("ECB and CBC Error Propagation")
+
+block1 = input("Enter first ciphertext block (C1): ")
+block2 = input("Enter second ciphertext block (C2): ")
+
+error = input("Did an error occur in C1? (yes/no): ")
+
+if error.lower() == "yes":
+    print("\nECB Mode:")
+    print("P1 is affected.")
+    print("P2 and later blocks are not affected.")
+
+    print("\nCBC Mode:")
+    print("P1 is completely corrupted.")
+    print("P2 has a bit error.")
+    print("P3 and later blocks are not affected.")
+
+    print("\nAnswer:")
+    print("a) Blocks beyond P2 are NOT affected.")
+    print("b) A bit error in P1 changes C1.")
+    print("   At the receiver, P1 is corrupted.")
+    print("   Later plaintext blocks are recovered normally.")
+else:
+    print("\nNo transmission error detected.")
+    print("All plaintext blocks are received correctly.")
