@@ -1,0 +1,15 @@
+def xor(a, b):
+    return ''.join(str(int(x) ^ int(y)) for x, y in zip(a, b))
+
+X = input("Enter block X (8 bits): ")
+T = input("Enter MAC T (8 bits): ")
+
+second_block = xor(X, T)
+
+print("Original message:", X)
+print("Known MAC:", T)
+
+print("\nForged two-block message:")
+print(X + " || " + second_block)
+
+print("\nCBC-MAC of forged message is also:", T)
